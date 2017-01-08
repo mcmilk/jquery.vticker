@@ -1,10 +1,13 @@
-/*
-* Tadas Juozapaitis ( kasp3rito@gmail.com )
-*
-* Modifed by Zazar:
-* 24.06.2011 - Corrected pausing issue with multiple instances
-*
-*/
+
+/**
+ * Tadas Juozapaitis (kasp3rito@gmail.com)
+ *
+ * 2011 Zazar
+ * - Corrected pausing issue with multiple instances
+ *
+ * 2017 Tino Reichardt (milky at Open-Digital-Signage dot org)
+ * - added maxHeight option
+ */
 
 (function($){
 
