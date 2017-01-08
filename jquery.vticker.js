@@ -15,7 +15,8 @@ $.fn.vTicker = function(options) {
 		showItems: 3,
 		animation: '',
 		mousePause: true,
-		isPaused: false
+		isPaused: false,
+		maxHeight: 33
 	};
 
 	var options = $.extend(defaults, options);
@@ -26,9 +27,9 @@ $.fn.vTicker = function(options) {
 		var obj = obj2.children('ul');
 		
 	    	first = obj.children('li:first').clone(true);
-    		obj.animate({top: '-=' + height + 'px'}, options.speed, function() {
+    		obj.animate({top: '-=' + height + 'vh'}, options.speed, function() {
         		$(this).children('li:first').remove();
-	        	$(this).css('top', '0px');
+	        	$(this).css('top', '0vh');
         	});
 		
 		if(options.animation == 'fade') {
@@ -43,23 +44,16 @@ $.fn.vTicker = function(options) {
 		var obj = $(this);
 		var maxHeight = 0;
 		var itempause = options.isPaused;
+		var maxHeight = options.maxHeight;
 
 		obj.css({overflow: 'hidden', position: 'relative'})
-			.children('ul').css({position: 'absolute', margin: 0, padding: 0})
-			.children('li').css({margin: 0, padding: 0});
-
-		obj.children('ul').children('li').each(function(){
-
-			if($(this).height() > maxHeight) {
-				maxHeight = $(this).height();
-			}
-		});
+			.children('ul').css({position: 'absolute', margin: 0, padding: 0});
 
 		obj.children('ul').children('li').each(function() {
-			$(this).height(maxHeight);
+			$(this).height(maxHeight + "vh");
 		});
 
-		obj.height(maxHeight * options.showItems);
+		obj.height(maxHeight * options.showItems + "vh");
 		
     		var interval = setInterval(function(){ moveUp(obj, maxHeight, itempause); }, options.pause);
 		
