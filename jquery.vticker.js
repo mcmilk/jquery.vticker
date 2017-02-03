@@ -1,12 +1,8 @@
 
 /**
- * Tadas Juozapaitis (kasp3rito@gmail.com)
- *
- * 2011 Zazar
- * - Corrected pausing issue with multiple instances
- *
- * 2017 Tino Reichardt (milky at Open-Digital-Signage dot org)
- * - added maxHeight option
+ * Copyright (C) 2017 Tino Reichardt (milky at Open-Digital-Signage dot org)
+ * - based on code by Tadas Juozapaitis <kasp3rito@gmail.com> and Zazar
+ * - Homepage: https://github.com/mcmilk/jquery.vticker/
  */
 
 (function($){
@@ -16,8 +12,6 @@ $.fn.vTicker = function(options) {
 		speed: 700,
 		pause: 4000,
 		showItems: 3,
-		animation: '',
-		mousePause: true,
 		isPaused: false,
 		maxHeight: 33
 	};
@@ -35,12 +29,7 @@ $.fn.vTicker = function(options) {
 	        	$(this).css('top', '0vh');
         	});
 		
-		if(options.animation == 'fade') {
-			obj.children('li:first').fadeOut(options.speed);
-			obj.children('li:last').hide().fadeIn(options.speed);
-		}
-
-	    	first.appendTo(obj);
+		first.appendTo(obj);
 	};
 	
 	return this.each(function() {
@@ -59,15 +48,7 @@ $.fn.vTicker = function(options) {
 		obj.height(maxHeight * options.showItems + "vh");
 		
     		var interval = setInterval(function(){ moveUp(obj, maxHeight, itempause); }, options.pause);
-		
-		if (options.mousePause)
-		{
-			obj.bind("mouseenter",function() {
-				itempause = true;
-			}).bind("mouseleave",function() {
-				itempause = false;
-			});
-		}
 	});
 };
+
 })(jQuery);
